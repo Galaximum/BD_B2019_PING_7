@@ -35,7 +35,16 @@ FROM PLAYERS
 ```sql
 SELECT P.COUNTRY_ID,
        CAST(COUNT(CASE
-                      WHEN P.NAME RLIKE '^[aeiouAEIOU].*$' THEN 1
+                      WHEN P.NAME LIKE 'A%' THEN 1
+                      WHEN P.NAME LIKE 'a%' THEN 1
+                      WHEN P.NAME LIKE 'E%' THEN 1
+                      WHEN P.NAME LIKE 'e%' THEN 1
+                      WHEN P.NAME LIKE 'I%' THEN 1
+                      WHEN P.NAME LIKE 'i%' THEN 1
+                      WHEN P.NAME LIKE 'O%' THEN 1
+                      WHEN P.NAME LIKE 'o%' THEN 1
+                      WHEN P.NAME LIKE 'U%' THEN 1
+                      WHEN P.NAME LIKE 'u%' THEN 1
            END) as DOUBLE) * 100 / COUNT(*) AS PERCENT
 FROM PLAYERS P
 GROUP BY P.COUNTRY_ID
